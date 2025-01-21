@@ -7,14 +7,6 @@ jobs:
   my-first-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: joke
-      - run: git commit -a -m "Add changes"
-      - uses: ad-m/github-push-action@master
-        with:
-          branch: ${{ github.ref }}
-
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -23,4 +15,16 @@ jobs:
         run: npm install --global @mikemcbride/dad-jokes
 
       - name: Test dad-jokes CLI
-        run: dad-jokes > blegue.txt
+        run: dad-jokes
+      - uses: actions/checkout@v4
+      - run: dad-jokes >> blague.txt
+
+      
+      - run: |
+        git config --local user.email "github-actions[bot]@users.noreply.github.com"
+        git config --local user.name "github-actions[bot]"
+        git checkout -b joke-reports
+        git add blague.txt
+        git commit -m "ma blague"
+        git push origine joke-reports --force
+  
