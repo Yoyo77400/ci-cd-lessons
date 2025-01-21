@@ -11,8 +11,9 @@ jobs:
       - run: git checkout joke
       - run: git commit -a -m "Add changes"
       - uses: ad-m/github-push-action@master
-        with: joke
-        branch: ${{ github.head_ref }}
+        with:
+        branch: ${{ github.ref }}
+        
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
