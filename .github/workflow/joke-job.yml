@@ -6,3 +6,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: npm install --global @mikemcbride/dad-jokes
+      - run: dad-jokes
