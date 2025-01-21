@@ -2,10 +2,17 @@ name: "My joke Pipeline"
 run-name: ${{github.actor}} We are tesing github Action
 on: 
   push:
+
 jobs:
   my-first-job:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - run: git checkout joke
+      - run: git commit -a -m "Add changes"
+      - uses: ad-m/github-push-action@master
+        with: joke
+        branch: ${{ github.head_ref }}
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
@@ -14,4 +21,4 @@ jobs:
         run: npm install --global @mikemcbride/dad-jokes
 
       - name: Test dad-jokes CLI
-        run: dad-jokes
+        run: dad-jokes > blegue.txt
