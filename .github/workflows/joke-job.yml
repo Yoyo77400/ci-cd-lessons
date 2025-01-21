@@ -1,5 +1,5 @@
 name: "My joke Pipeline"
-run-game: ${{gitgub.actor}} We are tesing github Action
+run-name: ${{gitgub.actor}} We are tesing github Action
 on: 
   push:
 jobs:
